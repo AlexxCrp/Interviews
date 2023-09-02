@@ -238,7 +238,7 @@ public class Menu
 
     public void CheckClientInventory(Client client)
     {
-        
+        Console.Clear();
         Console.WriteLine($"Inventar:");
         int counter = 0;
 
@@ -276,7 +276,7 @@ public class Menu
 
         client.BorrowBook(choice);
 
-        Console.Write($"Cartea {choice} a fost imprumutata de {client.Name}");
+        Console.WriteLine($"Cartea {choice} a fost imprumutata de {client.Name}");
         Console.WriteLine("Apasati enter pentru a merge inapoi");
         Console.ReadLine();
         DisplayClientOptions(client);
@@ -284,6 +284,7 @@ public class Menu
 
     public void ClientReturn(Client client)
     {
+        Console.Clear();
         Console.WriteLine($"Alegeti o carte de returnat");
         int counter = 0;
 
@@ -297,7 +298,7 @@ public class Menu
 
         var price = client.ReturnBook(choice);
 
-        Console.Write($"Cartea {choice} a fost returnata de {client.Name}. Trebuie platit {price}");
+        Console.WriteLine($"Cartea {choice} a fost returnata de {client.Name}. Trebuie platit {price}");
         Console.WriteLine("Apasati enter pentru a merge inapoi");
         Console.ReadLine();
         DisplayClientOptions(client);
@@ -476,7 +477,5 @@ class Program
         Menu menu = new Menu();
 
         menu.RunMenu();
-
-
     }
 }
