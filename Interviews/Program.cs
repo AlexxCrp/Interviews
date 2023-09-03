@@ -1,28 +1,4 @@
-﻿/*
- 
-Deci
-
-Biblioteca ->   Carti
-                GetCarti
-                GetNrExemplare(Carte carte)
-                Imprumuta(carte)
-                Restituie(carte)
-                
-
-Carte ->    Nume
-            ISBN
-            Pret de inchiriere
-
-Meniu
-            
-
-
- 
- 
- */
-
-using System.Security.Cryptography.X509Certificates;
-using static System.Reflection.Metadata.BlobBuilder;
+﻿using System.Security.Cryptography.X509Certificates;
 
 public class Client
 {
@@ -131,9 +107,9 @@ public class Library
         var borrowTime = DateTime.Now - borrowingDate;
         if (borrowTime > MaxBorrowTime)
         {
-            var lateDays = MaxBorrowTime - borrowTime;
+            var lateDays = (MaxBorrowTime - borrowTime)*-1;
 
-            return price + 1 / 100 * price * lateDays.Value.Days;
+            return price + 0.01 * price * lateDays.Value.Days;
         }
         else
         {
@@ -453,10 +429,30 @@ public class Menu
             switch(choice)
             {
                 case "1":
-                    ClientJourney();
+                    try
+                    {
+                        ClientJourney();
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Something went wrong... Press enter to reset");
+                        Console.WriteLine($"Exception message: {ex.Message}");
+                        Console.ReadLine();
+                    }
                     break;
                 case "2":
-                    LibraryJourney();
+                    try
+                    {
+                        LibraryJourney();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Something went wrong... Press enter to reset");
+                        Console.WriteLine($"Exception message: {ex.Message}");
+                        Console.ReadLine();
+                    }
                     break;
                 case "3":
                     Environment.Exit(0);
@@ -468,7 +464,6 @@ public class Menu
         }
     }
 }
-
 
 class Program
 {
